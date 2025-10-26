@@ -75,5 +75,4 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# ---- Models (use Git LFS instead) ----
-*.pt
+
