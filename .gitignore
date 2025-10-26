@@ -1,0 +1,79 @@
+
+# ---- Python ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ---- Virtual environments ----
+.env
+.venv
+env/
+venv/
+ENV/
+*.env
+
+# ---- Jupyter / Streamlit ----
+.ipynb_checkpoints/
+.streamlit/secrets.toml
+
+# ---- IDE / Editors ----
+.idea/
+.vscode/
+*.iml
+
+# ---- Logs ----
+*.log
+
+# ---- OS files ----
+.DS_Store
+Thumbs.db
+
+# ---- Models (use Git LFS instead) ----
+*.pt
+
+=======
+# ---- Python ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ---- Virtual environments ----
+.env
+.venv
+env/
+venv/
+ENV/
+*.env
+
+# ---- Jupyter / Streamlit ----
+.ipynb_checkpoints/
+.streamlit/secrets.toml
+
+# ---- IDE / Editors ----
+.idea/
+.vscode/
+*.iml
+
+# ---- Logs ----
+*.log
+
+# ---- OS files ----
+.DS_Store
+Thumbs.db
+
+# ---- Models (use Git LFS instead) ----
+*.pt

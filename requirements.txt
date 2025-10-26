@@ -1,0 +1,53 @@
+
+# Core PyTorch and ML dependencies (CPU only)
+
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.8.0
+torchvision==0.23.0+cpu
+numpy==1.26.4
+
+# Streamlit for web interface
+streamlit==1.38.0
+
+# NLP & tokenizers
+sentencepiece==0.2.1
+
+# Data and ML utilities
+pandas==2.2.3
+scikit-learn==1.5.2
+sacrebleu==2.4.3
+python-Levenshtein==0.26.1
+
+# Progress bars and utilities
+tqdm==4.66.5
+
+# Regex handling
+regex==2024.11.6
+=======
+# Core PyTorch and ML dependencies (CPU only)
+
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.8.0
+torchvision==0.23.0+cpu
+numpy==1.26.4
+
+# Streamlit for web interface
+streamlit==1.38.0
+
+# NLP & tokenizers
+sentencepiece==0.2.1
+
+# Data and ML utilities
+pandas==2.2.3
+scikit-learn==1.5.2
+sacrebleu==2.4.3
+python-Levenshtein==0.26.1
+
+# Progress bars and utilities
+tqdm==4.66.5
+
+# Regex handling
+regex==2024.11.6
+

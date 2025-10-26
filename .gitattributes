@@ -1,0 +1,4 @@
+
+*.pt filter=lfs diff=lfs merge=lfs -text
+best_xlarge_model.pt filter=lfs diff=lfs merge=lfs -text
+
