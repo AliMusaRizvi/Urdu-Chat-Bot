@@ -342,55 +342,68 @@ def init_session_state():
 
 
 # ============================================
-# MODEL LOADING
+# MODEL LOADING (Hugging Face Integrated)
 # ============================================
+from huggingface_hub import hf_hub_download
 
 @st.cache_resource(show_spinner=False)
 def load_chatbot_model(model_name='xlarge'):
-    """Load the Transformer chatbot model
+    """Load the Transformer chatbot model.
+    Downloads from Hugging Face Hub if not found locally.
     
     Args:
         model_name: 'baseline', 'large', or 'xlarge'
     """
     try:
         from model_wrapper import TransformerChatbotInference
-        
-        # Map model names to file paths (from your image)
+
+        # Map model names to Hugging Face filenames
+        hf_repo = "AliMusaRizvi/urdu-chatbot-best-xlarge"  
         model_files = {
             'xlarge': 'best_xlarge_model.pt',
             'large': 'best_large_model.pt',
             'baseline': 'best_baseline_model.pt'
         }
-        
         model_path = model_files.get(model_name, 'best_xlarge_model.pt')
         tokenizer_path = 'urdu_sp.model'
-        
-        # Check files exist
-        if not Path(model_path).exists():
-            raise FileNotFoundError(f"Model file not found: {model_path}\nAvailable models: {list(model_files.values())}")
-        
+
+        # Local cache dir
+        local_model_path = Path(model_path)
+
+        # If not found locally, fetch from Hugging Face
+        if not local_model_path.exists():
+            st.warning(f"Downloading {model_name} model from Hugging Face...")
+            token = st.secrets.get("HF_TOKEN", None)
+            local_model_path = hf_hub_download(
+                repo_id=hf_repo,
+                filename=model_path,
+                token=token
+            )
+
         if not Path(tokenizer_path).exists():
             raise FileNotFoundError(f"Tokenizer not found: {tokenizer_path}")
-        
-        # Load chatbot
-        chatbot = TransformerChatbotInference(model_path=model_path)
-        
+
+        # Load the chatbot
+        chatbot = TransformerChatbotInference(model_path=local_model_path)
+
         # Get model info
         model_info = {
             'model_name': model_name,
-            'model_path': model_path,
+            'model_path': str(local_model_path),
             'device': str(chatbot.device),
             'vocab_size': chatbot.tokenizer.get_vocab_size() if chatbot.tokenizer else 0,
             'config': chatbot.config.__dict__ if chatbot.config else {}
         }
-        
+
         return chatbot, None, model_info
-        
+
     except Exception as e:
         error_msg = f"Model loading failed: {str(e)}"
         print(f"Error: {error_msg}")
         print(f"Traceback: {traceback.format_exc()}")
+        from model_wrapper import create_demo_chatbot
         return create_demo_chatbot(), error_msg, {}
+
 
 
 def create_demo_chatbot():
